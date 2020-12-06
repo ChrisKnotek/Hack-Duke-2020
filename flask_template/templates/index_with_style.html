@@ -8,12 +8,30 @@
 
 <h1 id="main-header">This is the index page, but with style!</h1>
 <ul id="menu-nav">
-  <li class="menu-item"><a href="/">Root Page</a></li>
-  <li class="menu-item"><a href="/style">Root Page w/style</a></li>
-  <li class="menu-item"><a href="/python">page w/python</a></li>
-  <li class="menu-item"><a href="/database">page w/database</a></li>
+  <li class="menu-item"><a href="/">Main Page</a></li>
+  <li class="menu-item"><a href="/python">Choose your Company</a></li>
+  <li class="menu-item"><a href="/style">Submit a Review</a></li>
+  <li class="menu-item"><a href="/database">Data</a></li>
 </ul>
 <p>Note how there is nothing special about this page, just plain html.</p>
 <p>This is a good option for pages that contain static information.</p>
 
 <p>We don't want just static pages though, we want pages powered by <span class="green">PYTHON!</span></p>
+
+<title>Reusable Form Demo</title>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+                    {% for message in messages %}
+ 	<li>{ { message[1] }}</li>
+{% endfor %}</ul>
+{% endif %}
+{% endwith %}
+<form action="" method="post">
+            &#123; &#123; form.csrf &#125;&#125;
+<div class="input text">
+                { { form.name.label }} { { form.name }}</div>
+<div class="input submit">
+                <input type="submit" value="Submit"></div>
+</form>
