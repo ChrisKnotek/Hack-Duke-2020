@@ -1,21 +1,9 @@
 from database import init_db
 from database import db_session
-from models import Car
+from models import Company
 print("SEEDING TEST DATABASE")
 init_db()
-car = Car('Chevy', 'Cruise', 'Red', '2000')
-db_session.add(car)
-
-car = Car('Ford', 'Mustang', 'Red', '2012')
-db_session.add(car)
-
-
-car = Car('Aston Martin', 'DB5', 'Silver', '1964')
-db_session.add(car)
-
-car = Car('Toyota', 'Camry', 'Blue', '2012')
-db_session.add(car)
-
-
+rev = Company('Diversity', 4, 'I love it here')
+db_session.add(rev)
 db_session.commit()
 print("DONE!")

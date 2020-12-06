@@ -1,53 +1,80 @@
-<h1>Here is a page backed by a database</h1>
-<ul>
-  <li><a href="/">Main Page</a></li>
-  <li><a href="/python">Choose your Company</a></li>
-  <li><a href="/style">Submit a Review</a></li>
-  <li><a href="/database">Data</a></li>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static',filename='stylesheets/input.css') }}">
+</head>
+<h1 id="main-header"> Diversify My Company</h1>
+<ul id="menu-nav">
+  <li class="menu-item"><a href="/">Main Page</a></li>
+  <li class="menu-item"><a href="/python">Choose your Company</a></li>
+  <li class="menu-item"><a href="/style">Submit a Review</a></li>
+  <li class="menu-item"><a href="/database">Data</a></li>
+  <li class="menu-item"><a href="/input">Input</a></li>
 </ul>
+    <div class="container contact-form">
+      <div class="contact-image">
+        <a href="https://ibb.co/F6Nmqcv"><img src="https://i.ibb.co/F6Nmqcv/download.png" alt="download" border="0"></a>           
+      </div>
 
-<h3>Cars</h3>
-<table>
-  <thead>
-    <th>Make</th>
-    <th>Model</th>
-    <th>Color</th>
-    <th>Year</th>
-  </thead>
-  <tbody>
-  {% for car in cars %}
-    <tr>
-      <td> {{ car.make }}</td>
-      <td> {{ car.model }}</td>
-      <td> {{ car.color }}</td>
-      <td> {{ car.year }}</td>
-    </tr>  
-  {% endfor %}
-  </tbody>
-</table>
+        <h3>Leave a Review</h3>
+        <table class="pure-table">
+          <thead>
+            <th>Standard</th>
+            <th>Points</th>
+            <th>Additional_Info</th>
+          </thead>
+          <tbody>
+          {% for rev in revs %}
+            <tr>
+              
+              <td> {{ rev.standard }}</td>
+              <td> {{ rev.points }}</td>
+              <td> {{ rev.additional_info }}</td>
+            </tr>  
+          {% endfor %}
+          </tbody>
+        </table>
 
-<br /><br />
+        <br /><br />
+        <div class="row">
+        <form action="/add_rev" >
+          <div class="form-group">
+            <select name="company_name" id="company_name" class="form-control" >
+              <option value="default">Find a Company</option>
+              <option value="Google">Google</option>
+              <option value="Ford Motors">Google</option>
+              <option value="Microsoft">Google</option>
+              <option value="State Street">State Street</option>
+            </select>
+          </div>
 
-<form action="/add_car" >
-  <label>Make</label><br />
-  <input type="text" name="make" />
-  <br />
-  <br />
+          <div class="form-group">
+            <select name="standard" id="standard" class="form-control" >
+              <option value="default">Select a DEI Standard:</option>
+              <option value="Fair Treatment">Fair Treatment</option>
+              <option value="Equal Access to Opportunity">Equal Access to Opportunity</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="Emphasis on Innovation">Emphasis on Innovation</option>
+              <option value="Organizational Agility">Organizational Agility</option>
+              <option value="Conflict Resolution Processes">Conflict Resolution Processes</option>
+              <option value="Commitment to Inclusion">Commitment to Inclusion</option>
+              <option value="Distribution of Diversity">Distribution of Diversity</option>
+              <option value="Cultural Competency Training">Cultural Competency Training</option>
+            </select>
+        </div>
 
-  <label>Model</label><br />
-  <input type="text" name="model" />
-  <br/>
-  <br />
+        <div class="form-group">
+          <input type="number" name = "points" min="1" max="5" step="1" class="form-control" placeholder="Select a Number">
+        </div> 
 
-  <label>Color</label><br />
-  <input type="text" name="color" />
-  <br />
-  <br />
+        <div class="col-md-6">
+            <textarea type="text" name="additional_info" name="msg" class="form-control" placeholder="Additional Info *" style="width: 100%; height: 150px;"></textarea>
+        </div>
 
-  <label>Year</label><br />
-  <input type="text" name="year" />
-  <br />
-  <br />
-
-  <input type="submit" />
-</form>
+        <div class="form-group">
+            <input type="submit" name="btnSubmit" class="btnContact" value="Submit" />
+        </div>
+        </form>
+        </div>
+    </div>
+</html>
