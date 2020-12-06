@@ -1,6 +1,28 @@
 body{
     background: -webkit-linear-gradient(left, #ff9966, #ffff99);
 }
+#main-header{
+    color: #14cbeb;
+    font-weight: 800;
+  }
+  
+  .menu-item{
+    display: inline-block;
+    padding-right: 7px;
+    padding-left: 7px;
+  }
+  
+  .menu-item:hover{
+    color: #D08770;
+    cursor: pointer;
+  }
+  
+  #menu-nav{
+    padding: 0;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    color: #bb1d1d;
+  }
 .contact-form{
     background: #fff;
     margin-top: 10%;

@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, url_for
 from flask import render_template
 from database import db_session
-from models import Car
+from models import Company
 import pdb
 
 
@@ -20,7 +20,7 @@ def index():
 def show_python():
   return render_template(
     'python.html',
-    cars = Car.query.all()
+    revs = Company.query.all()
   )
 
 
@@ -28,20 +28,19 @@ def show_python():
 def database():
   return render_template(
     'database.html',
-    cars = Car.query.all()
+    revs= Company.query.all()
   )
 
 
+@app.route('/add_rev')
+def add_rev():
+  
+  standard = request.args.get("standard")
+  points = request.args.get("points")
+  additional_info = request.args.get("additional_info")
 
-@app.route('/add_car')
-def add_car():
-  make = request.args.get("make")
-  model = request.args.get("model")
-  color = request.args.get("color")
-  year = request.args.get("year")
-
-  car = Car(make, model, color, year)
-  db_session.add(car)
+  rev = Company(standard, points, additional_info)
+  db_session.add(rev)
   db_session.commit()
 
   return redirect(url_for('database'))
@@ -55,21 +54,21 @@ def style():
 def companyName():
   return render_template(
     'companyName.html', 
-    cars = Car.query.all()
+    revs = Company.query.all()
     )
 
 @app.route('/companyName2')
 def companyName2():
   return render_template(
     'companyName2.html', 
-    cars = Car.query.all()
+    revs = Company.query.all()
     )
 
 @app.route('/companyName3')
 def companyName3():
   return render_template(
     'companyName3.html', 
-    cars = Car.query.all()
+    revs = Company.query.all()
     )
 
 @app.teardown_appcontext
