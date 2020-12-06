@@ -20,9 +20,9 @@ def index():
 def show_python():
   return render_template(
     'python.html',
-    car_list=["Ford", "Jaguar", "Hyundai"],
-    car_dictionary={"make": "Ford", "model": "Mustang", "year": "2019", "color":"red"}
+    cars = Car.query.all()
   )
+
 
 @app.route('/database')
 def database():
@@ -30,6 +30,8 @@ def database():
     'database.html',
     cars = Car.query.all()
   )
+
+
 
 @app.route('/add_car')
 def add_car():
@@ -48,6 +50,27 @@ def add_car():
 @app.route('/style')
 def style():
     return render_template('index_with_style.html')
+
+@app.route('/companyName')
+def companyName():
+  return render_template(
+    'companyName.html', 
+    cars = Car.query.all()
+    )
+
+@app.route('/companyName2')
+def companyName2():
+  return render_template(
+    'companyName2.html', 
+    cars = Car.query.all()
+    )
+
+@app.route('/companyName3')
+def companyName3():
+  return render_template(
+    'companyName3.html', 
+    cars = Car.query.all()
+    )
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):

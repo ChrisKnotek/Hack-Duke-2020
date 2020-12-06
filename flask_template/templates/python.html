@@ -1,39 +1,84 @@
-<h1>Here is a page with components rendered with python</h1>
-<ul>
-  <li><a href="/">Root Page</a></li>
-  <li><a href="/style">Root Page w/style</a></li>
-  <li><a href="/python">page w/python</a></li>
-  <li><a href="/database">page w/database</a></li>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheets/index.css') }}">
+  
+
+</head>
+
+<h1 id="main-header">Companies we track</h1>
+<ul id="menu-nav">
+  <li class="menu-item"><a href="/">Main Page</a></li>
+  <li class="menu-item"><a href="/style">Submit a Report</a></li>
+
 </ul>
-
-<p>all of our variables were defined in our "controller" a.k.a. flask_template.py</p>
-
+<p>Pick what company you would like to look at from the drop down menu:</p>
 
 
-<h3>This is rendered from a list</h3>
-<ul>
-  {% for car in car_list%}
-    <li>{{ car }}</li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+.menu-btn {
+   background-color: #7e32d4;
+   color: white;
+   padding: 16px;
+   font-size: 20px;
+   font-weight: bolder;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   border: none;
+}
+.dropdown-menu {
+   position: relative;
+   display: inline-block;
+}
+.menu-content {
+   display: none;
+   position: absolute;
+   background-color: #017575;
+   min-width: 160px;
+   z-index: 1;
+}
+.links {
+   color: rgb(255, 255, 255);
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+   font-size: 18px;
+   font-weight: bold;
+   border-bottom: 1px solid black;
+}
+.links:hover {
+   background-color: rgb(8, 107, 46);
+}
+.dropdown-menu:hover .menu-btn {
+   background-color: #3e8e41;
+}
+</style>
+</head>
+<body>
+<div class="dropdown-menu">
+<button class="menu-btn">Companies</button>
+<div class="menu-content">
+<a class="links" href="/companyName">{{cars[0].make}}</a>
+<a class="links" href="/companyName2">{{cars[1].make}}</a>
+<a class="links" href="/companyName3">{{cars[2].make}}</a>
+</div>
+</div>
+<script>
+let dropdownBtn = document.querySelector('.menu-btn');
+let menuContent = document.querySelector('.menu-content');
+dropdownBtn.addEventListener('click',()=>{
+   if(menuContent.style.display===""){
+      menuContent.style.display="block";
+   } else {
+      menuContent.style.display="";
+   }
+})
+</script>
+</body>
+</html>
 
-<h3>And this from a dictionary</h3>
-<table>
-  <tr>
-    <td>Make: </td>
-    <td> {{ car_dictionary["make"] }}</td>
-  </tr>
-  <tr>
-    <td>Model: </td>
-    <td> {{ car_dictionary["model"] }}</td>
-  </tr>
-  <tr>
-    <td>Yeah: </td>
-    <td> {{ car_dictionary["year"] }}</td>
-  </tr>
-  <tr>
-    <td>Color: </td>
-    <td> {{ car_dictionary["color"] }}</td>
-  </tr>
-</table>
+
 
